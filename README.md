@@ -1,6 +1,6 @@
 # 🤖 AI Customer Service - Top Up Game
 
-![CI/CD Pipeline](https://github.com/USERNAME_LO/ai-cs-topup-game/actions/workflows/ci-cd.yml/badge.svg)
+![CI/CD Pipeline](https://github.com/dhyaksa05/ai-cs-topup-game/actions/workflows/ci-cd.yml/badge.svg)
 
 AI Customer Service chatbot untuk layanan top up game.
 
