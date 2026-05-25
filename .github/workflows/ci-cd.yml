@@ -18,7 +18,7 @@ jobs:
           python-version: '3.11'
       - run: pip install --upgrade pip
       - run: pip install fastapi uvicorn httpx pytest pytest-asyncio
-      - run: python -m pytest tests/ -v/ -v
+      - run: python -m pytest tests/ -v
 
   # ── 2. SECURITY GATE ──────────────────────────────
   security:
