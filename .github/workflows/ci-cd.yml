@@ -7,9 +7,8 @@ on:
     branches: [main]
 
 jobs:
-  # ── 1. AUTOMATED TESTING ──────────────────────────
- test:
-    name: 🧪 Automated Testing
+  test:
+    name: Automated Testing
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -20,9 +19,8 @@ jobs:
       - run: pip install fastapi uvicorn httpx pytest pytest-asyncio pytest-cov
       - run: python -m pytest -v --cov=app --cov-report=term-missing
 
-  # ── 2. SECURITY GATE ──────────────────────────────
   security:
-    name: 🔒 Security Gate
+    name: Security Gate
     runs-on: ubuntu-latest
     needs: test
     steps:
@@ -33,22 +31,20 @@ jobs:
       - run: pip install bandit
       - run: bandit -r app/ -ll
 
-  # ── 3. DEPLOY STAGING ─────────────────────────────
   deploy-staging:
-    name: 🚀 Deploy to Staging
+    name: Deploy to Staging
     runs-on: ubuntu-latest
     needs: security
     steps:
       - uses: actions/checkout@v4
       - name: Simulate Deploy Staging
         run: |
-          echo "✅ Deploying to STAGING environment..."
-          echo "Build: ${{ github.sha }}"
+          echo "Deploying to STAGING environment..."
+          echo "Build ${{ github.sha }}"
           echo "Deploy staging SUCCESS"
 
-  # ── 4. DEPLOY UAT (Manual Gate) ───────────────────
   deploy-uat:
-    name: 🧑‍💼 Deploy to UAT
+    name: Deploy to UAT
     runs-on: ubuntu-latest
     needs: deploy-staging
     environment:
@@ -57,13 +53,12 @@ jobs:
       - uses: actions/checkout@v4
       - name: Simulate Deploy UAT
         run: |
-          echo "✅ Deploying to UAT environment..."
-          echo "Build: ${{ github.sha }}"
+          echo "Deploying to UAT environment..."
+          echo "Build ${{ github.sha }}"
           echo "Deploy UAT SUCCESS"
 
-  # ── 5. DEPLOY PRODUCTION ──────────────────────────
   deploy-production:
-    name: 🏁 Deploy to Production
+    name: Deploy to Production
     runs-on: ubuntu-latest
     needs: deploy-uat
     environment:
@@ -72,6 +67,6 @@ jobs:
       - uses: actions/checkout@v4
       - name: Simulate Deploy Production
         run: |
-          echo "✅ Deploying to PRODUCTION environment..."
-          echo "Build: ${{ github.sha }}"
+          echo "Deploying to PRODUCTION environment..."
+          echo "Build ${{ github.sha }}"
           echo "Deploy production SUCCESS"
